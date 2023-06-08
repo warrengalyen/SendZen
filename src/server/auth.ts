@@ -8,8 +8,6 @@ import {
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { prisma } from "~/server/db";
 import bcrypt from "bcrypt";
-import {Prisma} from ".prisma/client";
-import StringFilter = Prisma.StringFilter;
 
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
@@ -86,7 +84,7 @@ export const authOptions: NextAuthOptions = {
                     where: {
                         email: {
                             equals: credentials?.email,
-                            // mode: "insensitive",
+              mode: "insensitive",
                         },
                     },
                 });
