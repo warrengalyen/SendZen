@@ -71,12 +71,14 @@ model VerificationToken {
 }
 
 model List {
-  id       String     @id @default(cuid())
-  name     String
-  userId   String
-  campaign Campaign[]
-  user     User       @relation(fields: [userId], references: [id], onDelete: Cascade)
-  contacts Contact[]
+  id        String     @id @default(cuid())
+  name      String
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  userId    String
+  campaign  Campaign[]
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  contacts  Contact[]
 }
 
 model Contact {
