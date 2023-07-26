@@ -1,8 +1,6 @@
-import {Dispatch, SetStateAction, useState} from "react";
+import {Dispatch, SetStateAction} from "react";
 import {toast} from "react-hot-toast";
 import {api} from "~/utils/api";
-import AlertBlock from "./AlertBlock";
-import InputWithLabel from "./InputWithLabel";
 import Modal from "./Modal";
 
 export default function RemoveContactModal({
@@ -30,7 +28,7 @@ export default function RemoveContactModal({
             buttonActionText="Delete"
             actionOnClick={() => {
                 toast.promise(
-                    removeContactFromList.mutateAsync({ listId, contactId: contact.id }),
+                    removeContactFromList.mutateAsync({listId, contactId: contact.id}),
                     {
                         loading: "Removing contact...",
                         success: () => {
