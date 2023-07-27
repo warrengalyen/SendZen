@@ -16,6 +16,7 @@ export default function FileUpload({
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setFormValues: React.Dispatch<React.SetStateAction<any>>;
 }) {
+  const utils = api.useContext();
   const addMultipleContactsToList =
     api.contacts.addMultipleContactsToList.useMutation();
   const [isLoading, setIsLoading] = useState(false);
@@ -48,12 +49,10 @@ export default function FileUpload({
           }),
           {
             loading: "Uploading contacts...",
-            success: (res) => {
+            success: () => {
               setOpen(false);
               setIsLoading(false);
-              return `Uploading ${res.length} contact${
-                res.length === 1 ? "" : "s"
-              }`;
+              return "Contacts added!";
             },
             error: () => {
               setIsError({ status: true, message: "An error has occurred" });
@@ -77,7 +76,7 @@ export default function FileUpload({
     <>
       <div className="mb-4 flex flex-col items-center justify-center gap-2 pt-8 text-gray-800">
         <h2 className="text-2xl font-semibold">File uploader</h2>
-        <p className="text-center text-sm text-gray-700">
+        <p className="w-[75%] text-center text-sm text-gray-700">
           Please note, the first line on the CSV will be ignored to accommodate
           headings
         </p>
@@ -143,12 +142,14 @@ export default function FileUpload({
               </div>
             </div>
           )}
-          <button
-            type="submit"
-            className="rounded-md bg-blue-600 px-4 py-2 text-white"
-          >
-            {isLoading ? "Loading..." : "Continue"}
-          </button>
+          {formValues.file && (
+            <button
+              type="submit"
+              className="rounded-md bg-blue-600 px-4 py-2 text-white"
+            >
+              {isLoading ? "Loading..." : "Upload"}
+            </button>
+          )}
         </form>
       </div>
     </>
