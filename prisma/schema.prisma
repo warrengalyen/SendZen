@@ -90,13 +90,14 @@ model Contact {
 }
 
 model Campaign {
-  id        String   @id @default(cuid())
-  name      String
-  subject   String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  userId    String
-  listId    String?
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  list      List?    @relation(fields: [listId], references: [id], onDelete: Cascade)
+  id           String   @id @default(cuid())
+  name         String
+  subject      String
+  sendFromName String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  userId       String
+  listId       String?
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  list         List?    @relation(fields: [listId], references: [id], onDelete: Cascade)
 }
