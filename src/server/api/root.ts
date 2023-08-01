@@ -1,4 +1,4 @@
-import { campaignsRouter } from "~/server/api/routers/campaigns";
+import { campaignsRouter } from "./routers/campaigns";
 import { contactsRouter } from "./routers/contacts";
 import { listsRouter } from "./routers/lists";
 import { createTRPCRouter } from "~/server/api/trpc";

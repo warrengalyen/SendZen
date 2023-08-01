@@ -45,7 +45,7 @@ export default function LineTabs({
                   tab.current
                     ? "border-blue-500 text-blue-600"
                     : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700",
-                  "w-1/2 cursor-pointer border-b-2 px-1 py-4 text-center text-sm font-medium"
+                  "w-1/2 cursor-pointer border-b-2 py-4 px-1 text-center text-sm font-medium"
                 )}
                 aria-current={tab.current ? "page" : undefined}
               >

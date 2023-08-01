@@ -18,9 +18,13 @@ export default function FileUpload({
 }) {
   const utils = api.useContext();
   const addMultipleContactsToList =
-    api.contacts.addMultipleContactsToList.useMutation();
+    api.contacts.addMultipleContactsToList.useMutation({
+      onSuccess: () => {
+        utils.lists.invalidate(), utils.contacts.invalidate();
+      },
+    });
   const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState({ state: false, message: "" });
+  const [isError, setIsError] = useState({ status: false, message: "" });
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -95,7 +99,7 @@ export default function FileUpload({
               <div className="flex items-center justify-between border-y-2 border-gray-200 py-3">
                 <p>{formValues.file.name}</p>
                 <button
-                  className="rounded-md bg-gray-100 px-4 py-1 text-sm"
+                  className="rounded-md bg-gray-100 py-1 px-4 text-sm"
                   onClick={() => setFormValues({ ...formValues, file: "" })}
                 >
                   Remove
@@ -145,7 +149,7 @@ export default function FileUpload({
           {formValues.file && (
             <button
               type="submit"
-              className="rounded-md bg-blue-600 px-4 py-2 text-white"
+              className="rounded-md bg-blue-600 py-2 px-4 text-white"
             >
               {isLoading ? "Loading..." : "Upload"}
             </button>

@@ -82,16 +82,16 @@ export default function MultiSelectTable({
               <div className="sm:flex-auto">
                 <p className="mt-2 text-sm text-gray-700">{introText}</p>
               </div>
-              <div className="mt-4 flex gap-2 sm:ml-16 sm:mt-0">
+              <div className="mt-4 flex gap-2 sm:mt-0 sm:ml-16">
                 {topRowButtons}
               </div>
             </div>
             <div className="mt-8 flow-root">
-              <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+              <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
                   <div className="relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
                     {selectedlists.length > 0 && (
-                      <div className="absolute left-14 top-0 flex h-12 items-center space-x-3 bg-gray-50 sm:left-12">
+                      <div className="absolute top-0 left-14 flex h-12 items-center space-x-3 bg-gray-50 sm:left-12">
                         {multiSelectButtons}
                       </div>
                     )}
