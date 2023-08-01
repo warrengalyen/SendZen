@@ -7,7 +7,7 @@ export default function Breadcrumbs({
   pages: { name: string; href: string; current?: boolean }[];
 }) {
   return (
-    <nav className="lex mb-4" aria-label="Breadcrumb">
+    <nav className="mb-4 flex overflow-x-auto" aria-label="Breadcrumb">
       <ol role="list" className="flex items-center space-x-4">
         <li>
           <div>
