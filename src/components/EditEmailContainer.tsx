@@ -16,7 +16,7 @@ export default function EditEmailContainer({ title, items }: KanbanLaneProps) {
   }); // added 'data' obj in - not sure if necessary
   return (
     <div>
-      <div className="flex flex-col" ref={setNodeRef}>
+      <div>
         {items.map((item, key) => (
           <DraggableComponent
             title={item.name}
