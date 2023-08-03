@@ -11,11 +11,13 @@ export default function CampaignEditorEmailBody({
   isDragInProgress,
   handleDeleteBlock,
   setIsEditing,
+  setEditorValues,
 }: {
   blocks: component[];
   isDragInProgress: boolean;
   handleDeleteBlock: (id: string) => void;
-  setIdEditing: ({
+  setEditorValues: React.Dispatch<React.SetStateAction<any>>;
+  setIsEditing: ({
     blockId,
     current,
   }: {
@@ -36,6 +38,7 @@ export default function CampaignEditorEmailBody({
                 className="flex h-8 w-8 items-center justify-center rounded-full bg-white"
                 onClick={() => {
                   setIsEditing({ blockId: item.id, current: true });
+                  setEditorValues(item.attributes);
                 }}
               >
                 <PencilSquareIcon className="h-4 w-4" />
