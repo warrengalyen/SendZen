@@ -9,6 +9,8 @@ import { blockInfo } from "~/campaignEditor/utils/blockattributes";
 import EditorInputField from "~/campaignEditor/EditorInputField";
 import EditorTextArea from "~/campaignEditor/EditorTextArea";
 import EditorSelectMenu from "~/campaignEditor/EditorSelectMenu";
+import { useState } from "react";
+import EditorImageUpload from "~/campaignEditor/EditorImageUpload";
 
 type Tabs = {
   name: string;
@@ -65,6 +67,8 @@ export default function CampaignEditorSidebar({
     );
     setBlocks(newBlocks);
   };
+
+  console.log({ editorValues });
 
   return (
     <>
@@ -130,6 +134,16 @@ export default function CampaignEditorSidebar({
                             options={blockInfo[indentifier]?.options ?? []}
                             setValue={(value) => onChangeEvent(value)}
                           />
+                        ) : blockInfo[indentifier]?.inputType === "file" ? (
+                          <div>
+                            <p className="mb-2">
+                              {String(blockInfo[indentifier]?.label)}
+                            </p>
+                            <EditorImageUpload
+                              editorValues={editorValues}
+                              onChangeEvent={onChangeEvent}
+                            />
+                          </div>
                         ) : (
                           ""
                         )}
