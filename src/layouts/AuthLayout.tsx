@@ -2,7 +2,7 @@ import { PropsWithChildren } from "react";
 import { Toaster } from "react-hot-toast";
 import Logo from "~/components/Logo";
 
-export default function ({
+export default function AuthLayout({
   children,
   heading,
   authType,

@@ -1,10 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import {
-  closestCenter,
-  DndContext,
-  DragOverlay,
-  UniqueIdentifier,
-} from "@dnd-kit/core";
+import { closestCenter, DndContext, UniqueIdentifier } from "@dnd-kit/core";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Button from "~/components/Button";
@@ -41,7 +36,6 @@ export default function CampaignBuilder() {
     },
     { name: "Global Styles", current: false },
   ]);
-  const [activeId, setActiveId] = useState<UniqueIdentifier | undefined>();
   const [isDragInProgress, setIsDragInProgress] = useState(false);
   const [isEditing, setIsEditing] = useState({
     blockId: "",
@@ -80,6 +74,23 @@ export default function CampaignBuilder() {
     }
   }, [getCampaignEditorInfo.data]);
 
+  useEffect(() => {
+    const onKeyDown = (e: any) => {
+      if (
+        navigator.userAgent.indexOf("Mac OS X") != -1 &&
+        e.metaKey &&
+        e.code === "KeyK"
+      ) {
+        setIsCommandPaletteOpen((prev) => !prev);
+      } else if (e.altKey && e.code === "KeyK") {
+        setIsCommandPaletteOpen((prev) => !prev);
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
+
   const [components, setComponents] = useState<any>([
     { id: "HeadingText", name: "Heading" },
     { id: "ParagraphText", name: "Body Text" },
@@ -104,8 +115,6 @@ export default function CampaignBuilder() {
     );
 
     if (active.id !== over.id) {
-      setActiveId(undefined);
-
       setBlocks((items) => {
         const activeIndex = items
           .map((mapItem) => mapItem.id)
@@ -128,7 +137,7 @@ export default function CampaignBuilder() {
             setIsEditing({
               blockId: uniqueId,
               current: true,
-              initialValues: attributes!,
+              initialValues: attributes,
             });
 
             setEditorValues(attributes as any);
@@ -172,23 +181,6 @@ export default function CampaignBuilder() {
     }
   };
 
-  useEffect(() => {
-    const onKeyDown = (e: any) => {
-      if (
-        navigator.userAgent.indexOf("Mac OS X") != -1 &&
-        e.metaKey &&
-        e.code === "KeyK"
-      ) {
-        setIsCommandPaletteOpen((prev) => !prev);
-      } else if (e.altKey && e.code === "KeyK") {
-        setIsCommandPaletteOpen((prev) => !prev);
-      }
-    };
-
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, []);
-
   return (
     <>
       <Head>
@@ -216,8 +208,7 @@ export default function CampaignBuilder() {
       <DndContext
         modifiers={[restrictToWindowEdges]}
         collisionDetection={closestCenter}
-        onDragStart={(e) => {
-          setActiveId(e.active.id);
+        onDragStart={() => {
           setIsDragInProgress(true);
         }}
         onDragEnd={handleSortableDragEnd}

@@ -173,11 +173,15 @@ export default function AdminLayout({
                           />
                            </div> */}
                         <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-600 p-1 text-sm text-white">
-                          {`${session?.user?.firstName[0]}${session?.user?.lastName[0]}`}
+                          {`${session?.user?.firstName[0] ?? ""}${
+                            session?.user?.lastName[0] ?? ""
+                          }`}
                         </div>
                         <div className="ml-3">
                           <p className="text-base font-medium text-gray-700 group-hover:text-gray-900">
-                            {`${session?.user?.firstName} ${session?.user?.lastName}`}
+                            {`${session?.user?.firstName ?? ""} ${
+                              session?.user?.lastName ?? ""
+                            }`}
                           </p>
                           <p className="text-sm font-medium text-gray-500 group-hover:text-gray-700">
                             View profile
@@ -235,12 +239,16 @@ export default function AdminLayout({
                       alt=""
                      /> */}
                     <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-600 p-1 text-sm text-white">
-                      {`${session?.user?.firstName[0]}${session?.user?.lastName[0]}`}
+                      {`${session?.user?.firstName[0] ?? ""}${
+                        session?.user?.lastName[0] ?? ""
+                      }`}
                     </div>
                   </div>
                   <div className="ml-3">
                     <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900">
-                      {`${session?.user?.firstName} ${session?.user?.lastName}`}
+                      {`${session?.user?.firstName ?? ""} ${
+                        session?.user?.lastName ?? ""
+                      }`}
                     </p>
                     <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">
                       View profile

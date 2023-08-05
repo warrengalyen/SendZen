@@ -31,7 +31,7 @@ export default function EmailPreviewModal({
       open={open}
       setOpen={setOpen}
       actionOnClick={() => {
-        toast.promise(
+        void toast.promise(
           sendPreviewEmail.mutateAsync({
             emailAddress: formValues.email,
             subject,

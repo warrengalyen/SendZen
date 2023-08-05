@@ -1,4 +1,3 @@
-import Logo from "~/components/Logo";
 import { toast } from "react-hot-toast";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/router";
@@ -28,7 +27,7 @@ export default function SignOut() {
           appearance="primary"
           onClick={(e) => {
             e.preventDefault();
-            toast.promise(
+            void toast.promise(
               signOut({ callbackUrl: "/" }),
               {
                 loading: "Signing out...",

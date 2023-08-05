@@ -21,6 +21,7 @@ import {
   getDefaultAttributeValues,
 } from "./utils/campaignEditorUtils";
 import CampaignComponentIcons from "~/components/CampaignComponentIcons";
+import { type BlockAttributes } from "./utils/blockattributes";
 
 const items = [
   {
@@ -51,14 +52,17 @@ export default function EditorCommandPalette({
     React.SetStateAction<{
       blockId: string;
       current: boolean;
-      initialValues: {};
+      initialValues: object;
     }>
   >;
   setEditorValues: React.Dispatch<React.SetStateAction<any>>;
 }) {
   const [query, setQuery] = useState("");
 
-  const addNewBlock = (selectedComponent: { id: string; name: string }) => {
+  const addNewBlock = (selectedComponent: {
+    id: keyof BlockAttributes;
+    name: string;
+  }) => {
     const attributes = getDefaultAttributeValues(selectedComponent.id);
     const uniqueId = uuidv4();
 
@@ -68,12 +72,12 @@ export default function EditorCommandPalette({
       componentName: selectedComponent.id,
       attributes: attributes,
     };
-    setBlocks((prev: any) => [...prev, obj]);
+    setBlocks((prev: any[]) => [...prev, obj]);
 
     setIsEditing({
       blockId: uniqueId,
       current: true,
-      initialValues: attributes!,
+      initialValues: attributes,
     });
 
     setEditorValues(attributes as any);

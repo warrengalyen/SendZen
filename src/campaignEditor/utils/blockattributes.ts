@@ -50,16 +50,24 @@ export type SpacerProps = {
   spacing?: string;
 };
 
-type BlockAttributes =
-  | HeadingTextProps
-  | ParagraphTextProps
-  | ButtonProps
-  | ImageProps
-  | SpacerProps;
+// type BlockAttributes =
+//   | HeadingTextProps
+//   | ParagraphTextProps
+//   | ButtonProps
+//   | ImageProps
+//   | SpacerProps;
+
+export type BlockAttributes = {
+  HeadingText: HeadingTextProps;
+  ParagraphText: ParagraphTextProps;
+  Button: ButtonProps;
+  Image: ImageProps;
+  Spacer: SpacerProps;
+};
 
 // separation of concerns - values need to be stored in different object to how the application uses those values
 
-export const blockAttributes: { [index: string]: BlockAttributes } = {
+export const blockAttributes: BlockAttributes = {
   HeadingText: {
     text: "Add text here",
     backgroundColor: "#ffffff",

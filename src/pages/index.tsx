@@ -6,7 +6,6 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import { api } from "~/utils/api";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
-import Image from "next/image";
 import Logo from "~/components/Logo";
 
 const Home: NextPage = () => {

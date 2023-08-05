@@ -52,9 +52,9 @@ export default function SendEmailModal({
       actionOnClick={() => {
         if (list) {
           if (tabs[0]?.current) {
-            toast.promise(
+            void toast.promise(
               sendEmailsToList.mutateAsync({
-                listId: list.id,
+                listId: list?.id ?? "",
                 campaignId,
                 subject,
                 sendFromName,
@@ -73,7 +73,7 @@ export default function SendEmailModal({
               }
             );
           } else {
-            toast.promise(
+            void toast.promise(
               scheduleCampaign.mutateAsync({
                 campaignId,
                 scheduledSend: new Date(formValues.scheduledDateTime),

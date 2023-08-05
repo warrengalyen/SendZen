@@ -1,5 +1,5 @@
 import { DocumentPlusIcon } from "@heroicons/react/24/outline";
-import { FormEvent, useEffect, useRef, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import Papa from "papaparse";
 import { toast } from "react-hot-toast";
 import { api } from "~/utils/api";
@@ -20,7 +20,7 @@ export default function FileUpload({
   const addMultipleContactsToList =
     api.contacts.addMultipleContactsToList.useMutation({
       onSuccess: () => {
-        utils.lists.invalidate(), utils.contacts.invalidate();
+        void utils.lists.invalidate(), void utils.contacts.invalidate();
       },
     });
   const [isLoading, setIsLoading] = useState(false);
@@ -44,7 +44,7 @@ export default function FileUpload({
       delimiter: ",",
       skipEmptyLines: true,
       complete: function (results: any) {
-        toast.promise(
+        void toast.promise(
           addMultipleContactsToList.mutateAsync({
             emails: results.data.map(
               (contact: any) => Object.values(contact)[0]

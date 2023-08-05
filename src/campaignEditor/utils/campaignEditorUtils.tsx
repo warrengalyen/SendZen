@@ -3,9 +3,12 @@ import Spacer from "../Spacer";
 import EmailImage from "../EmailImage";
 import HeadingText from "../HeadingText";
 import ParagraphText from "../ParagraphText";
-import { blockAttributes } from "./blockattributes";
+import { type BlockAttributes, blockAttributes } from "./blockattributes";
 
-export const getDefaultAttributeValues = (componentName: string) => {
+export const getDefaultAttributeValues = (
+  componentName: keyof BlockAttributes
+) => {
+  // spreading into obj fixed [campaignId] edit page is undefined error
   return blockAttributes[componentName];
 };
 

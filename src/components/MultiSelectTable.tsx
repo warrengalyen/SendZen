@@ -1,4 +1,4 @@
-import { PropsWithChildren, useEffect, useRef, useState } from "react";
+import { type PropsWithChildren, useEffect, useRef, useState } from "react";
 import EmptyListState from "~/components/EmptyListState";
 import formatClasses from "~/utils/formatClasses";
 import formatDateTime from "~/utils/formatDateTime";
@@ -42,7 +42,6 @@ export default function MultiSelectTable({
   const [indeterminate, setIndeterminate] = useState(false);
 
   useEffect(() => {
-    // if (getListInfo.data) { // MAY NEED TO ADD BACK IN?
     const isIndeterminate =
       selectedlists.length > 0 && selectedlists.length < tableData.length;
     setChecked(
@@ -54,7 +53,6 @@ export default function MultiSelectTable({
     if (checkbox.current !== null) {
       checkbox.current.indeterminate = isIndeterminate;
     }
-    // }
   }, [selectedlists]);
 
   function toggleAll() {
@@ -135,7 +133,7 @@ export default function MultiSelectTable({
                             className={
                               selectedlists.includes(item.id)
                                 ? "bg-gray-50"
-                                : undefined
+                                : ""
                             }
                           >
                             <td className="relative px-7 sm:w-12 sm:px-6">

@@ -5,7 +5,7 @@ function Dashboard() {
   return <></>;
 }
 
-export default function () {
+export default function DashboardPage() {
   return (
     <AdminLayout pageHeading="Dashboard">
       <Dashboard />

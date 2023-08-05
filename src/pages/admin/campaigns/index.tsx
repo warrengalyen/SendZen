@@ -68,7 +68,7 @@ function Campaigns() {
               type="button"
               className="inline-flex items-center rounded border border-gray-300 bg-white px-2.5 py-1.5 text-xs font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30"
               onClick={() => {
-                toast.promise(
+                void toast.promise(
                   deleteCampaigns.mutateAsync({ campaignIds: selectedlists }),
                   {
                     loading: "Deleting...",
@@ -97,7 +97,7 @@ function Campaigns() {
         ]}
         screenReaderRowButtonText="View"
         rowButtonActions={(item: any) => {
-          router.push(`/admin/campaign/view/${item.id}`);
+          void router.push(`/admin/campaign/view/${item.id}`);
         }}
         rowButtonText="View"
       ></MultiSelectTable>
@@ -105,7 +105,7 @@ function Campaigns() {
   );
 }
 
-export default function () {
+export default function CampaignPage() {
   return (
     <AdminLayout pageHeading="Campaigns">
       <Campaigns />
