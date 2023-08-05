@@ -208,6 +208,10 @@ export default function CampaignBuilder() {
       <EditorCommandPalette
         open={isCommandPaletteOpen}
         setOpen={setIsCommandPaletteOpen}
+        setBlocks={setBlocks}
+        components={components}
+        setIsEditing={setIsEditing}
+        setEditorValues={setEditorValues}
       />
       <DndContext
         modifiers={[restrictToWindowEdges]}
