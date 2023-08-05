@@ -26,9 +26,11 @@ import renderToHtml from "~/campaignEditor/utils/renderToHtml";
 import Head from "next/head";
 import { restrictToWindowEdges } from "@dnd-kit/modifiers";
 import EditorCommandPalette from "~/campaignEditor/EditorCommandPalette";
+import EmailPreviewModal from "~/campaignEditor/EmailPreviewModal";
 
 export default function CampaignBuilder() {
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
+  const [isPreviewEmailModalOpen, setIsPreviewEmailModalOpen] = useState(false);
 
   const router = useRouter();
 
@@ -177,10 +179,8 @@ export default function CampaignBuilder() {
         e.metaKey &&
         e.code === "KeyK"
       ) {
-        console.log("command + K click");
         setIsCommandPaletteOpen((prev) => !prev);
       } else if (e.altKey && e.code === "KeyK") {
-        console.log("Alt + K click");
         setIsCommandPaletteOpen((prev) => !prev);
       }
     };
@@ -192,12 +192,19 @@ export default function CampaignBuilder() {
   return (
     <>
       <Head>
-        <title>
-          Edit {getCampaignEditorInfo?.data?.name ?? "Campaign"} - SendZen
-        </title>
+        <title>{`Edit ${
+          getCampaignEditorInfo?.data?.name ?? "Campaign"
+        } - SendZen`}</title>
         <meta name="description" content="Visual email builder" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <EmailPreviewModal
+        open={isPreviewEmailModalOpen}
+        setOpen={setIsPreviewEmailModalOpen}
+        subject={getCampaignEditorInfo.data?.subject ?? ""}
+        sendFromName={getCampaignEditorInfo.data?.sendFromName ?? ""}
+        htmlContentFunc={() => renderToHtml(blocks, globalStyles)}
+      />
       <EditorCommandPalette
         open={isCommandPaletteOpen}
         setOpen={setIsCommandPaletteOpen}
@@ -246,6 +253,7 @@ export default function CampaignBuilder() {
                   appearance="secondary"
                   size="sm"
                   onClick={() => {
+                    setIsPreviewEmailModalOpen(true);
                     // console.log(renderToHtml(blocks, globalStyles));
                   }}
                 >
