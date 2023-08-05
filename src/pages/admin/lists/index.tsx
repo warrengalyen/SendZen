@@ -5,7 +5,7 @@ import Button from "~/components/Button";
 import { api } from "~/utils/api";
 import formatDateTime from "~/utils/formatDateTime";
 import NewListModal from "~/components/NewListModal";
-import { toast, Toaster } from "react-hot-toast";
+import { toast } from "react-hot-toast";
 import Link from "next/link";
 import StackedList from "~/components/StackedList";
 function List() {
@@ -46,7 +46,6 @@ function List() {
 
   return (
     <div>
-      <Toaster />
       {showNewListModal && (
         <NewListModal open={showNewListModal} setOpen={setShowNewListModal} />
       )}
@@ -57,7 +56,7 @@ function List() {
             edit an existing list below.
           </p>
         </div>
-        <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+        <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
           <Button
             appearance="primary"
             size="md"
@@ -71,11 +70,11 @@ function List() {
         <StackedList />
       </div>
       <div className="mt-8 flow-root ">
-        <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8 ">
+        <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 ">
           <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8 ">
             <div className="relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
               {selectedlists.length > 0 && (
-                <div className="absolute top-0 left-14 flex h-12 items-center space-x-3 bg-white sm:left-12">
+                <div className="absolute left-14 top-0 flex h-12 items-center space-x-3 bg-white sm:left-12">
                   <button
                     type="button"
                     className="inline-flex items-center rounded border border-gray-300 bg-white px-2.5 py-1.5 text-xs font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30"
