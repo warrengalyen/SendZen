@@ -26,6 +26,8 @@ function List() {
     },
   });
 
+  const getAllUserContacts = api.contacts.getAllUserContacts.useQuery();
+
   useLayoutEffect(() => {
     if (allLists.data) {
       const isIndeterminate =
@@ -67,7 +69,16 @@ function List() {
         </div>
       </div>
       <div className="mt-8">
-        <StackedList />
+        <StackedList
+          items={[
+            {
+              id: 1,
+              title: "All Contacts",
+              label: "Default List",
+              value: `${getAllUserContacts.data?.length ?? ""}`,
+            },
+          ]}
+        />
       </div>
       <div className="mt-8 flow-root ">
         <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 ">
