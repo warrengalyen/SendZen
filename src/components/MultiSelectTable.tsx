@@ -82,16 +82,16 @@ export default function MultiSelectTable({
               <div className="sm:flex-auto">
                 <p className="mt-2 text-sm text-gray-700">{introText}</p>
               </div>
-              <div className="mt-4 flex gap-2 sm:mt-0 sm:ml-16">
+              <div className="mt-4 flex gap-2 sm:ml-16 sm:mt-0">
                 {topRowButtons}
               </div>
             </div>
             <div className="mt-8 flow-root">
-              <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+              <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
                   <div className="relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
                     {selectedlists.length > 0 && (
-                      <div className="absolute top-0 left-14 flex h-12 items-center space-x-3 bg-gray-50 sm:left-12">
+                      <div className="absolute left-14 top-0 flex h-12 items-center space-x-3 bg-gray-50 sm:left-12">
                         {multiSelectButtons}
                       </div>
                     )}
@@ -183,9 +183,21 @@ export default function MultiSelectTable({
                                     key={i}
                                     className="whitespace-nowrap py-4 pr-3 text-sm text-gray-500"
                                   >
-                                    {item[column.id] instanceof Date
-                                      ? formatDateTime(item[column.id])
-                                      : item[column.id]}
+                                    {column.id === "hasSent" ? (
+                                      item[column.id] ? (
+                                        <p className="w-14 rounded-full bg-green-100 p-1 text-center text-xs font-semibold text-green-800">
+                                          Sent
+                                        </p>
+                                      ) : (
+                                        <p className="w-14 rounded-full bg-orange-100 p-1 text-center text-xs font-semibold text-orange-800">
+                                          Draft
+                                        </p>
+                                      )
+                                    ) : item[column.id] instanceof Date ? (
+                                      formatDateTime(item[column.id])
+                                    ) : (
+                                      item[column.id]
+                                    )}
                                   </td>
                                 );
                               }
