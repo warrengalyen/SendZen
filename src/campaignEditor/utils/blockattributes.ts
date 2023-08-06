@@ -82,6 +82,7 @@ export type BlockAttributes = {
   Spacer: SpacerProps;
   List: ListProps;
   NavBar: NavBarProps;
+  Social: NavBarProps;
 };
 
 // separation of concerns - values need to be stored in different object to how the application uses those values
