@@ -8,6 +8,7 @@ import Button from "~/components/Button";
 import CampaignInputFields from "~/components/CampaignInputFields";
 import DescriptionRow from "~/components/DescriptionRow";
 import LineTabs from "~/components/LineTabs";
+import Loading from "~/components/Loading";
 import SendEmailModal from "~/components/SendEmailModal";
 import VerticalSteps from "~/components/VerticalSteps";
 import AdminLayout from "~/layouts/AdminLayout";
@@ -115,7 +116,7 @@ function CampaignDetails() {
   return (
     <>
       {getCampaignInfo.isLoading || lists.isLoading ? (
-        <p>Loading...</p>
+        <Loading />
       ) : (
         <>
           <SendEmailModal
