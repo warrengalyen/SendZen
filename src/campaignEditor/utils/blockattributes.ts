@@ -17,6 +17,20 @@ export type HeadingTextProps = {
   padding?: string;
 };
 
+export type NavBarProps = {
+  column1Text?: string;
+  column1Link?: string;
+  column2Text?: string;
+  column2Link?: string;
+  column3Text?: string;
+  column3Link?: string;
+  backgroundColor?: string;
+  textColor?: string;
+  headingSize?: string;
+  fontWeight?: string;
+  padding?: string;
+};
+
 export type ParagraphTextProps = {
   paragraphText?: string;
   backgroundColor?: string;
@@ -60,13 +74,6 @@ export type ListProps = {
   padding?: string;
 };
 
-// type BlockAttributes =
-//   | HeadingTextProps
-//   | ParagraphTextProps
-//   | ButtonProps
-//   | ImageProps
-//   | SpacerProps;
-
 export type BlockAttributes = {
   HeadingText: HeadingTextProps;
   ParagraphText: ParagraphTextProps;
@@ -74,6 +81,7 @@ export type BlockAttributes = {
   Image: ImageProps;
   Spacer: SpacerProps;
   List: ListProps;
+  NavBar: NavBarProps;
 };
 
 // separation of concerns - values need to be stored in different object to how the application uses those values
@@ -102,7 +110,7 @@ export const blockAttributes: BlockAttributes = {
     buttonTextColor: "#ffffff",
     backgroundColor: "#ffffff",
     fontWeight: "normal",
-    URLAddress: "#",
+    URLAddress: "",
     buttonPadding: "10px",
     outerPadding: "10px",
     borderRadius: "5px",
@@ -126,6 +134,18 @@ export const blockAttributes: BlockAttributes = {
     fontWeight: "normal",
     padding: "10px",
   },
+  NavBar: {
+    column1Text: "First column",
+    column1Link: "",
+    column2Text: "Second column",
+    column2Link: "",
+    column3Text: "Third column",
+    column3Link: "",
+    backgroundColor: "#ffffff",
+    textColor: "#000000",
+    fontWeight: "normal",
+    padding: "10px",
+  },
 };
 
 type BlockInfo = {
@@ -135,6 +155,9 @@ type BlockInfo = {
 };
 
 export const blockInfo: { [index: string]: BlockInfo } = {
+  column1Link: { inputType: "text", label: "Column 1 Link" },
+  column2Link: { inputType: "text", label: "Column 2 Link" },
+  column3Link: { inputType: "text", label: "Column 3 Link" },
   listType: {
     inputType: "select",
     label: "List Type",
@@ -166,6 +189,9 @@ export const blockInfo: { [index: string]: BlockInfo } = {
     options: ["10px", "20px", "30px", "40px"],
   },
   text: { inputType: "text", label: "Text" },
+  column1Text: { inputType: "text", label: "Column 1 Text" },
+  column2Text: { inputType: "text", label: "Column 2 Text" },
+  column3Text: { inputType: "text", label: "Column 3 Text" },
   alt: { inputType: "text", label: "Alt Text" },
   src: { inputType: "file", label: "Image" },
   URLAddress: { inputType: "text", label: "URL Address" },
