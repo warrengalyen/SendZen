@@ -184,8 +184,14 @@ export const campaignsRouter = createTRPCRouter({
       }
     }),
   getCampaignEditorInfo: protectedProcedure
-    .input(z.object({ campaignId: z.string().nullish() }))
+    .input(
+      z.object({
+        campaignId: z.string().nullish(),
+        isExampleBuilder: z.boolean().optional(),
+      })
+    )
     .query(async ({ ctx, input }) => {
+      if (input.isExampleBuilder) return null;
       if (!input || !input.campaignId) return null;
       try {
         const isUserAuthorisedToEditCampaign = async () => {
