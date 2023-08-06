@@ -6,7 +6,6 @@ import Button from "~/components/Button";
 import CampaignEditNavBar from "~/components/CampaignEditNavBar";
 import CampaignEditorSidebar from "~/components/CampaignEditorSidebar";
 import { arrayMove } from "@dnd-kit/sortable";
-import SortableItem from "~/components/SortableItem";
 import CampaignEditorEmailBody from "~/components/CampaignEditorEmailBody";
 import HeadingText from "~/campaignEditor/HeadingText";
 import {

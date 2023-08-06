@@ -50,6 +50,16 @@ export type SpacerProps = {
   spacing?: string;
 };
 
+export type ListProps = {
+  listType?: string;
+  paragraphText?: string;
+  backgroundColor?: string;
+  textColor?: string;
+  justifyContent?: string;
+  fontWeight?: string;
+  padding?: string;
+};
+
 // type BlockAttributes =
 //   | HeadingTextProps
 //   | ParagraphTextProps
@@ -63,6 +73,7 @@ export type BlockAttributes = {
   Button: ButtonProps;
   Image: ImageProps;
   Spacer: SpacerProps;
+  List: ListProps;
 };
 
 // separation of concerns - values need to be stored in different object to how the application uses those values
@@ -106,6 +117,15 @@ export const blockAttributes: BlockAttributes = {
     backgroundColor: "#ffffff",
     spacing: "40px",
   },
+  List: {
+    listType: "unordered",
+    paragraphText: "Add your list here",
+    backgroundColor: "#ffffff",
+    textColor: "#000000",
+    justifyContent: "left",
+    fontWeight: "normal",
+    padding: "10px",
+  },
 };
 
 type BlockInfo = {
@@ -115,6 +135,11 @@ type BlockInfo = {
 };
 
 export const blockInfo: { [index: string]: BlockInfo } = {
+  listType: {
+    inputType: "select",
+    label: "List Type",
+    options: ["unordered", "ordered"],
+  },
   borderRadius: {
     inputType: "select",
     label: "Border Radius (px)",
