@@ -15,23 +15,21 @@ export const getDefaultAttributeValues = (
 };
 
 export const generateElement = (componentName: string, attributes: any) => {
-  let element;
   if (componentName === "HeadingText") {
-    element = <HeadingText {...attributes} />;
+    return <HeadingText {...attributes} />;
   } else if (componentName === "ParagraphText") {
-    element = <ParagraphText {...attributes} />;
+    return <ParagraphText {...attributes} />;
   } else if (componentName === "Button") {
-    element = <EmailButton {...attributes} />;
+    return <EmailButton {...attributes} />;
   } else if (componentName === "Image") {
-    element = <EmailImage {...attributes} />;
+    return <EmailImage {...attributes} />;
   } else if (componentName === "Spacer") {
-    element = <Spacer {...attributes} />;
+    return <Spacer {...attributes} />;
   } else if (componentName === "List") {
-    element = <List {...attributes} />;
+    return <List {...attributes} />;
   } else if (componentName === "NavBar" || componentName === "Social") {
-    element = <NavBar {...attributes} />;
+    return <NavBar {...attributes} />;
   }
-  return element;
 };
 
 export const getIndexOfId = (id: string, blocks: any[]) =>

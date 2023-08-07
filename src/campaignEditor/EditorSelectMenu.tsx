@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import formatClasses from "~/utils/formatClasses";
@@ -11,8 +11,8 @@ export default function EditorSelectMenu({
 }: {
   label: string;
   options: any[];
-  value: any;
-  setValue: React.Dispatch<React.SetStateAction<any>>;
+  value: Record<string, any>;
+  setValue: React.Dispatch<React.SetStateAction<Record<string, any>>>;
 }) {
   return (
     <Listbox value={value} onChange={setValue}>
@@ -61,7 +61,8 @@ export default function EditorSelectMenu({
                             "block truncate"
                           )}
                         >
-                          {item[0]?.toUpperCase() + item.slice(1)}
+                          {String(item[0]?.toUpperCase()) +
+                            String(item.slice(1))}
                         </span>
 
                         {selected ? (

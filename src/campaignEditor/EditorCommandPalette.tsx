@@ -2,19 +2,7 @@ import { v4 as uuidv4 } from "uuid";
 import { Fragment, useState } from "react";
 import { Combobox, Dialog, Transition } from "@headlessui/react";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
-import {
-  CalendarIcon,
-  CodeBracketIcon,
-  DocumentIcon,
-  ExclamationCircleIcon,
-  LinkIcon,
-  PencilSquareIcon,
-  PhotoIcon,
-  TableCellsIcon,
-  VideoCameraIcon,
-  ViewColumnsIcon,
-  Bars4Icon,
-} from "@heroicons/react/24/outline";
+import { ExclamationCircleIcon } from "@heroicons/react/24/outline";
 import formatClasses from "~/utils/formatClasses";
 import {
   generateElement,
@@ -22,19 +10,6 @@ import {
 } from "./utils/campaignEditorUtils";
 import CampaignComponentIcons from "~/components/CampaignComponentIcons";
 import { type BlockAttributes } from "./utils/blockattributes";
-
-const items = [
-  {
-    id: 1,
-    name: "Text",
-    description: "Add text.",
-    url: "#",
-    color: "bg-blue-500",
-    icon: PencilSquareIcon,
-  },
-];
-
-// change items to work with adding new component of specified search to bottom of page
 
 export default function EditorCommandPalette({
   open,

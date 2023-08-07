@@ -1,77 +1,76 @@
-import { ReactNode } from "react";
+import { type ReactNode } from "react";
 
 export type Block = {
   id: string;
   element: ReactNode;
   componentName: string;
-  attributes: any;
+  attributes: Record<string, any>;
 };
 
 export type HeadingTextProps = {
-  text?: string;
-  backgroundColor?: string;
-  textColor?: string;
-  justifyContent?: string;
-  headingSize?: string;
-  fontWeight?: string;
-  padding?: string;
+  text: string;
+  backgroundColor: string;
+  textColor: string;
+  justifyContent: string;
+  headingSize: "h1" | "h2" | "h3" | "h4";
+  fontWeight: string;
+  padding: string;
 };
 
 export type NavBarProps = {
-  column1Text?: string;
-  column1Link?: string;
-  column2Text?: string;
-  column2Link?: string;
-  column3Text?: string;
-  column3Link?: string;
-  backgroundColor?: string;
-  textColor?: string;
-  headingSize?: string;
-  fontWeight?: string;
-  padding?: string;
+  column1Text: string;
+  column1Link: string;
+  column2Text: string;
+  column2Link: string;
+  column3Text: string;
+  column3Link: string;
+  backgroundColor: string;
+  textColor: string;
+  fontWeight: string;
+  padding: string;
 };
 
 export type ParagraphTextProps = {
-  paragraphText?: string;
-  backgroundColor?: string;
-  textColor?: string;
-  justifyContent?: string;
-  fontWeight?: string;
-  padding?: string;
+  paragraphText: string;
+  backgroundColor: string;
+  textColor: string;
+  justifyContent: string;
+  fontWeight: string;
+  padding: string;
 };
 
 export type ButtonProps = {
-  text?: string;
-  buttonBackgroundColor?: string;
-  buttonTextColor?: string;
-  backgroundColor?: string;
-  fontWeight?: string;
-  URLAddress?: string;
-  buttonPadding?: string;
-  outerPadding?: string;
-  borderRadius?: string;
+  text: string;
+  buttonBackgroundColor: string;
+  buttonTextColor: string;
+  backgroundColor: string;
+  fontWeight: string;
+  URLAddress: string;
+  buttonPadding: string;
+  outerPadding: string;
+  borderRadius: string;
 };
 
 export type ImageProps = {
-  src?: string;
-  alt?: string;
-  padding?: string;
-  backgroundColor?: string;
+  src: string;
+  alt: string;
+  padding: string;
+  backgroundColor: string;
 };
 
 export type SpacerProps = {
-  backgroundColor?: string;
-  spacing?: string;
+  backgroundColor: string;
+  spacing: string;
 };
 
 export type ListProps = {
-  listType?: string;
-  paragraphText?: string;
-  backgroundColor?: string;
-  textColor?: string;
-  justifyContent?: string;
-  fontWeight?: string;
-  padding?: string;
+  listType: string;
+  paragraphText: string;
+  backgroundColor: string;
+  textColor: string;
+  justifyContent: string;
+  fontWeight: string;
+  padding: string;
 };
 
 export type BlockAttributes = {
@@ -84,8 +83,6 @@ export type BlockAttributes = {
   NavBar: NavBarProps;
   Social: NavBarProps;
 };
-
-// separation of concerns - values need to be stored in different object to how the application uses those values
 
 export const blockAttributes: BlockAttributes = {
   HeadingText: {

@@ -1,4 +1,4 @@
-import { Fragment, PropsWithChildren, useEffect, useState } from "react";
+import { Fragment, useEffect } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import Button from "./Button";
@@ -12,9 +12,9 @@ export default function SlideOver({
   handleSubmit,
   openActions,
   children,
-}: PropsWithChildren<{
+}: React.PropsWithChildren<{
   open: boolean;
-  setOpen: React.Dispatch<React.SetStateAction<any>>;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   subheading: string;
   heading: string;
   actionText: string;
@@ -25,7 +25,7 @@ export default function SlideOver({
     if (open === true) {
       openActions && openActions();
     }
-  }, [open]);
+  }, [open, openActions]);
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -47,7 +47,7 @@ export default function SlideOver({
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
                   <form className="flex h-full flex-col divide-y divide-gray-200 bg-white shadow-xl">
                     <div className="h-0 flex-1 overflow-y-auto">
-                      <div className="bg-blue-700 py-6 px-4 sm:px-6">
+                      <div className="bg-blue-700 px-4 py-6 sm:px-6">
                         <div className="flex items-center justify-between">
                           <Dialog.Title className="text-base font-semibold leading-6 text-white">
                             {heading}
@@ -72,8 +72,8 @@ export default function SlideOver({
                       </div>
                       <div className="flex flex-1 flex-col justify-between">
                         <div className="divide-y divide-gray-200 px-4 sm:px-6">
-                          <div className="space-y-6 pt-6 pb-5 ">
-                            <div className="pt-4 pb-6">{children}</div>
+                          <div className="space-y-6 pb-5 pt-6 ">
+                            <div className="pb-6 pt-4">{children}</div>
                           </div>
                         </div>
                       </div>
@@ -88,7 +88,7 @@ export default function SlideOver({
                       </Button>
                       <button
                         type="submit"
-                        className="ml-4 inline-flex justify-center rounded-md bg-blue-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+                        className="ml-4 inline-flex justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
                         onClick={(e) => handleSubmit(e)}
                       >
                         {actionText}
