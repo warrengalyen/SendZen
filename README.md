@@ -13,6 +13,8 @@ SendZen is a visual drag and drop email builder that allows user's to design, de
 - Edit emails using the command palette for keyboard shortcuts
 - Send campaigns instantly, as well as schedule for a certain day and time
 
+This project's tech stack has been built around the T3 Stack, as well as other libraries and tools for implementing app specific features.
+
 ## Tech Stack
 
 - Next.js
@@ -29,15 +31,21 @@ SendZen is a visual drag and drop email builder that allows user's to design, de
 - Nodemailer
 - React Hot Toast
 
+## Running locally
+
+Next.js App: `npm run dev`
+
+Prisma Studio: `npx prisma studio`
+
 ## Documentation
 
 ### Converting React components to email friendly HTML and CSS
 
-The `renderToHtml.ts` utils function is responsible for converting React components to email freindly HTML and CSS. It does this by using using `ReactDOMServer.renderToStaticMarkup()` to render the React component to a string. This also handles converting CSS-in-JS to regular CSS.
+The `renderToHtml.ts` utils function is responsible for converting React components to email friendly HTML and CSS. It does this by using using `ReactDOMServer.renderToStaticMarkup()` to render the React component to a string. This also handles converting CSS-in-JS to regular CSS.
 
 ### Storing and retrieving React components from the database
 
-The rendered html is never stored in the database and is ran adhoc when the user chooses to render their email to HTML or send a campaign. Instead, an array of objects containing the blocks of the email body as well as any global styles are stored as a stringified JSON object in the database. They are stored as objects containg a unique id, the name of the component and the props the component receives. The React component itself is never stored in the database.
+The rendered html is never stored in the database and is ran adhoc when the user chooses to render their email to HTML or send a campaign. Instead, an array of objects containing the blocks of the email body as well as any global styles are stored as a stringified JSON object in the database. They are stored as objects contain a unique id, the name of the component and the props the component receives. The React component itself is never stored in the database.
 
 Then, to retrieve the data, the data is parsed from the database using the `parseAndGenerateBlocks` function as well as the `generateElement` function is used to convert the data into React components (both found in `src -> campaignEditor -> utils -> campaignEditorUtils`) on the fly.
 
@@ -53,7 +61,7 @@ Note: Ensure componentNames and ids are consistent across all files.
 
 ### Using SendZen without an account
 
-The example builder blocks editor is facilitated through the 'example-builder' campaignId dynamic route with state and serverside props. Provided the campaignId is 'example-builder' the editor will render the editor, otherwise, the editor will only be able to
+The example builder blocks editor is facilitated through the 'example-builder' campaignId dynamic route with state and serverside rendering. Provided the campaignId is 'example-builder' (e.g. `/admin/campaign/edit/example-builder`), all users (regardless of their authentication state) will be able to access the editor. For all other routes, users will need to be authenticated in order to view their campaigns and experience the full editor.
 
 Certain features are restricted without an account, such as the ability to save and send campaigns, upload an image. Instead, user's are able to render their email to HTML to then use elsewhere.
 
