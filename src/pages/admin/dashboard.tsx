@@ -1,7 +1,5 @@
-import { getSession } from "next-auth/react";
 import AllContactsTable from "~/components/AllContactsTable";
 import Loading from "~/components/Loading";
-import StackedList from "~/components/StackedList";
 import StatsRow from "~/components/StatsRow";
 import AdminLayout from "~/layouts/AdminLayout";
 import { api } from "~/utils/api";

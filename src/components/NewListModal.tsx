@@ -10,7 +10,7 @@ export default function NewListModal({
   setOpen,
 }: {
   open: boolean;
-  setOpen: React.Dispatch<React.SetStateAction<any>>;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const utils = api.useContext();
   const [listName, setListName] = useState({ name: "" });

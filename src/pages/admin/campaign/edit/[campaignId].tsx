@@ -1,9 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import {
-  closestCenter,
-  DndContext,
-  type UniqueIdentifier,
-} from "@dnd-kit/core";
+import { closestCenter, DndContext } from "@dnd-kit/core";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Button from "~/components/Button";
@@ -11,7 +7,6 @@ import CampaignEditNavBar from "~/components/CampaignEditNavBar";
 import CampaignEditorSidebar from "~/components/CampaignEditorSidebar";
 import { arrayMove } from "@dnd-kit/sortable";
 import CampaignEditorEmailBody from "~/components/CampaignEditorEmailBody";
-import HeadingText from "~/campaignEditor/HeadingText";
 import {
   generateElement,
   getDefaultAttributeValues,
@@ -37,9 +32,7 @@ export default function CampaignBuilder() {
 
   const router = useRouter();
   const { data: session } = useSession();
-
   const [isExampleBuilder, setIsExampleBuilder] = useState(false);
-
   const [isDragInProgress, setIsDragInProgress] = useState(false);
   const [isEditing, setIsEditing] = useState({
     blockId: "",
@@ -83,23 +76,6 @@ export default function CampaignBuilder() {
     }
   }, [router]);
 
-  useEffect(() => {
-    const onKeyDown = (e: any) => {
-      if (
-        navigator.userAgent.indexOf("Mac OS X") != -1 &&
-        e.metaKey &&
-        e.code === "KeyK"
-      ) {
-        setIsCommandPaletteOpen((prev) => !prev);
-      } else if (e.altKey && e.code === "KeyK") {
-        setIsCommandPaletteOpen((prev) => !prev);
-      }
-    };
-
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, []);
-
   const [components, setComponents] = useState<any>([
     { id: "HeadingText", name: "Heading" },
     { id: "ParagraphText", name: "Body Text" },
@@ -132,9 +108,22 @@ export default function CampaignBuilder() {
     }
   }, [getCampaignEditorInfo.data]);
 
-  if (!router.isReady && !session) {
-    return <Loading />;
-  }
+  useEffect(() => {
+    const onKeyDown = (e: any) => {
+      if (
+        navigator.userAgent.indexOf("Mac OS X") != -1 &&
+        e.metaKey &&
+        e.code === "KeyK"
+      ) {
+        setIsCommandPaletteOpen((prev) => !prev);
+      } else if (e.altKey && e.code === "KeyK") {
+        setIsCommandPaletteOpen((prev) => !prev);
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
 
   function handleSortableDragEnd(event: any) {
     setIsDragInProgress(false);
