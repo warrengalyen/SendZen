@@ -5,10 +5,12 @@ export default function Logo({
   type,
   justifyContent,
   colorTheme,
+  size,
 }: {
   justifyContent: string;
   type?: "iconAndText";
   colorTheme?: "light" | "dark";
+  size?: "lg";
 }) {
   return (
     <Link href="/">
@@ -17,7 +19,9 @@ export default function Logo({
           <h3
             className={`${
               colorTheme === "light" ? "text-white" : "text-gray-900"
-            } tracking-loose mb-0 pb-0 text-2xl font-bold`}
+            } tracking-loose mb-0 pb-0 font-bold ${
+              size === "lg" ? "text-3xl" : "text-2xl"
+            }`}
           >
             SendZen
           </h3>
@@ -25,8 +29,7 @@ export default function Logo({
 
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="30"
-          height="30"
+          width={size === "lg" ? 40 : 30}
           viewBox="0 0 512.001 512.001"
         >
           <path

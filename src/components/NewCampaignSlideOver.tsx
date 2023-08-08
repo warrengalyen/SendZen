@@ -57,7 +57,6 @@ export default function NewCampaignSlideOver({
 
   return (
     <SlideOver
-      openActions={() => setInputValues(initialInputValues)}
       open={open}
       setOpen={setOpen}
       heading="New Campaign"
