@@ -36,7 +36,7 @@ export default function EmailPreviewModal({
             subject,
             sendFromName,
             htmlContent: htmlContentFunc(),
-          }),
+          }) as any,
           {
             loading: "Sending...",
             success: "Email sent!",

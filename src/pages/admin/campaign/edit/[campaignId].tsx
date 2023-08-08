@@ -38,17 +38,15 @@ export default function CampaignBuilder() {
   const router = useRouter();
   const { data: session } = useSession();
 
-  if (!router.isReady && !session) {
-    return <Loading />;
-  }
-
   const [isExampleBuilder, setIsExampleBuilder] = useState(false);
 
-  useEffect(() => {
-    if (router.isReady && router.query.campaignId === "example-builder") {
-      setIsExampleBuilder(true);
-    }
-  }, [router]);
+  const [isDragInProgress, setIsDragInProgress] = useState(false);
+  const [isEditing, setIsEditing] = useState({
+    blockId: "",
+    current: false,
+    initialValues: {},
+  });
+  const [editorValues, setEditorValues] = useState();
 
   const [tabs, setTabs] = useState([
     {
@@ -57,13 +55,6 @@ export default function CampaignBuilder() {
     },
     { name: "Global Styles", current: false },
   ]);
-  const [isDragInProgress, setIsDragInProgress] = useState(false);
-  const [isEditing, setIsEditing] = useState({
-    blockId: "",
-    current: false,
-    initialValues: {},
-  });
-  const [editorValues, setEditorValues] = useState();
 
   const getCampaignEditorInfo = api.campaigns.getCampaignEditorInfo.useQuery(
     {
@@ -87,21 +78,10 @@ export default function CampaignBuilder() {
   ]);
 
   useEffect(() => {
-    if (getCampaignEditorInfo.data && blocks?.length === 1) {
-      const newBlocks = parseAndGenerateBlocks(
-        getCampaignEditorInfo.data.blocks as string
-      );
-      if (newBlocks) {
-        setBlocks(newBlocks);
-      }
-      const globalStyles = JSON.parse(
-        getCampaignEditorInfo.data.globalStyles as string
-      );
-      if (globalStyles) {
-        setGlobalStyles(globalStyles);
-      }
+    if (router.isReady && router.query.campaignId === "example-builder") {
+      setIsExampleBuilder(true);
     }
-  }, [getCampaignEditorInfo.data]);
+  }, [router]);
 
   useEffect(() => {
     const onKeyDown = (e: any) => {
@@ -134,6 +114,27 @@ export default function CampaignBuilder() {
   const [globalStyles, setGlobalStyles] = useState({
     fontFamily: "Arial, Helvetica, sans-serif",
   });
+
+  useEffect(() => {
+    if (getCampaignEditorInfo.data && blocks?.length === 1) {
+      const newBlocks = parseAndGenerateBlocks(
+        getCampaignEditorInfo.data.blocks as string
+      );
+      if (newBlocks) {
+        setBlocks(newBlocks);
+      }
+      const globalStyles = JSON.parse(
+        getCampaignEditorInfo.data.globalStyles as string
+      );
+      if (globalStyles) {
+        setGlobalStyles(globalStyles);
+      }
+    }
+  }, [getCampaignEditorInfo.data]);
+
+  if (!router.isReady && !session) {
+    return <Loading />;
+  }
 
   function handleSortableDragEnd(event: any) {
     setIsDragInProgress(false);
