@@ -12,7 +12,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="relative isolate flex min-h-[100vh] flex-col items-center justify-center overflow-hidden bg-gray-50">
-        <div className="mx-auto flex max-w-7xl flex-col items-center gap-2 px-6 pb-24 pt-10 sm:pb-32 md:flex-row lg:flex lg:px-8 lg:py-20">
+        <div className="mx-auto flex max-w-7xl flex-1 flex-col items-center gap-2 px-6 pb-24 pt-10 sm:pb-32 md:flex-row lg:flex lg:px-8 lg:py-20">
           <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl lg:flex-shrink-0 lg:pt-8">
             <Logo justifyContent="justify-start" type="iconAndText" size="lg" />
             <h1 className="mt-8 text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
@@ -51,6 +51,27 @@ export default function Home() {
             </div>
           </div>
         </div>
+        <p className="mb-6 text-gray-600">
+          Email builder built by{" "}
+          <a
+            href="https://github.com/warrengalyen"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="border-b border-gray-500 pb-[1px]"
+          >
+            @warrengalyen
+          </a>
+          . Source code available on{" "}
+          <a
+            href="https://github.com/warrengalyen/SendZen"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="border-b border-gray-500 pb-[1px]"
+          >
+            GitHub
+          </a>
+          .
+        </p>
       </div>
     </>
   );
